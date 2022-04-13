@@ -1,6 +1,7 @@
 <?php include('view/header.php'); ?>
 
 <section id="list" class="list">
+
     <header class="list__row list__header">
         <h1>Assignments</h1>
         <form action="." method="get" id="list__header_select" class="list__header_select">
@@ -19,8 +20,22 @@
             </select>
             <button class="add-button bold">Go</button>
         </form>
-
     </header>
+
+    <?php if($assignments){ ?>
+        <?php foreach($assignments as $assignment) { ?>
+            <div class="list__row">
+                <div class="list__item">
+                    <p class="bold"><?= $assignment['courseName'] ?></p>
+                    <p><?= $assignment['Description'] ?></p>
+                </div>
+                <div class="list__removeItem">
+                    
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
+
 </section>
 
 <?php include('view/footer.php'); ?>

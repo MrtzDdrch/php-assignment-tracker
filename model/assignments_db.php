@@ -20,7 +20,8 @@
             $query = 'SELECT A.ID, A.DESCRIPTION, C.courseName FROM assignments A LEFT JOIN courses C ON A.courseID = C.courseID ORDER BY C.courseID';
         }
         $statement = $db->prepare($query);
-        $statement->bindValue(':course_id', $course_id);
+        // maybe put the following line into the if-block? not needed in else, and throws an error if applied when not needed
+        // $statement->bindValue(':course_id', $course_id); 
         $statement->execute();
         $assignments = $statement->fetchAll();
         $statement->closeCursor();
