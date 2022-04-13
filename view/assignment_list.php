@@ -30,12 +30,49 @@
                     <p><?= $assignment['Description'] ?></p>
                 </div>
                 <div class="list__removeItem">
-                    
+                    <form action="." method="post">
+                        <input type="hidden" name="action" value="delete_assignment">
+                        <input type="hidden" name="assignment_id" value="<?= $assignment['ID'] ?>">
+                        <button class="remove-button">X</button>
+                    </form>
                 </div>
             </div>
         <?php } ?>
+    <?php }elseif($course_id){ ?>
+        <br>
+        <p>No assignments exist for this course yet.</p>
+    <?php }else{ ?>
+        <br>
+        <p>No assignments exist yet.</p>
     <?php } ?>
 
 </section>
+
+<section id="add" class="add">
+    <h2>Add Assignment</h2>
+    <form action="." method="post" id="add__form" class="add__form">
+        <input type="hidden" name="action" value="add_assignment">
+        <div class="add__inputs">
+            <label>Course:</label>
+            <select name="course_id" required></select>
+                <option value="">Please select</option>
+                <?php foreach($courses as $course){ ?>
+                    <option value="<?= $course['courseID']; ?>">
+                        <?= $course['courseName']; ?>
+                    </option>
+                <?php } ?>
+            </select>
+            <label">Description:</label>
+            <input type="text" name="description" maxlength="120" placeholder="Description" required>
+        </div>
+        <div class="add__addItem">
+            <button class="add-button bold">Add</button>
+        </div>
+    </form>
+</section>
+
+<br>
+
+<p><a href=".?action=list_courses">View/Edit Courses</a></p>
 
 <?php include('view/footer.php'); ?>
